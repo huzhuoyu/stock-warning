@@ -4,19 +4,29 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
-    <artifactId>stock-warning</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>${revision}</version>
+    <description>stock altering service</description>
+    <groupId>stock-warning</groupId>
+    <artifactId>stock-warning</artifactId>
+
+    <!-- 版本标签 -->
+    <properties>
+        <revision>1.0-SNAPSHOT</revision>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+    <!-- 子模块 -->
     <modules>
         <module>stock-warning-autoconfig</module>
         <module>stock-warning-api</module>
         <module>stock-warning-impl</module>
     </modules>
 
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
+    <!-- 公共依赖 -->
+    <dependencies>
+
+    </dependencies>
 
 </project>
