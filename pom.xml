@@ -9,12 +9,18 @@
     <description>stock altering service</description>
     <groupId>stock-warning</groupId>
     <artifactId>stock-warning</artifactId>
+    <parent>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <groupId>org.springframework.boot</groupId>
+        <version>2.2.10.RELEASE</version>
+    </parent>
 
     <!-- 版本标签 -->
     <properties>
         <revision>1.0-SNAPSHOT</revision>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <lombok.version>1.18.12</lombok.version>
     </properties>
 
     <!-- 子模块 -->
@@ -24,9 +30,14 @@
         <module>stock-warning-impl</module>
     </modules>
 
-    <!-- 公共依赖 -->
-    <dependencies>
-
-    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>
