@@ -1,8 +1,7 @@
 package com.hzy.email;
 
 import com.hzy.StockWarningApplication;
-import com.hzy.props.StockWarningConfiguration;
-import org.junit.BeforeClass;
+import com.hzy.props.EmailConfigProperties;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +19,18 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class SendMailTest {
     @Autowired
     private SendEmail sendEmail;
+    @Autowired
+    EmailConfigProperties emailConfigProperties;
 
     @Test
     public void sendMail() {
         boolean isSuccess;
         try {
-            isSuccess = sendEmail.sendMail("652355283@qq.com", "测试邮件", "测试邮件");
+            MailSenderInfo mailSenderInfo = new MailSenderInfo();
+            mailSenderInfo.setToAddress("652355283@qq.com,masanke@163.com");
+            mailSenderInfo.setTitle("这是一封测试邮件");
+            mailSenderInfo.setTest("测试邮件11111");
+            isSuccess = sendEmail.sendMail(mailSenderInfo);
         } catch (Exception e) {
             e.printStackTrace();
             isSuccess = false;
