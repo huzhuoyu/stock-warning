@@ -1,6 +1,5 @@
 package com.hzy.props;
 
-import com.hzy.contants.StockContants;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

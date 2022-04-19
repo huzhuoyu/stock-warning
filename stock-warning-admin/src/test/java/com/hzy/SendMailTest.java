@@ -1,7 +1,8 @@
-package com.hzy.email;
+package com.hzy;
 
-import com.hzy.StockWarningApplication;
 import com.hzy.props.EmailConfigProperties;
+import com.hzy.email.MailSenderInfo;
+import com.hzy.email.SendEmail;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
- * @ClassName com.hzy.email.SendMailTest
- * @Description com.hzy.email.SendMailTest
+ * @ClassName com.hzy.SendMailTest
+ * @Description com.hzy.SendMailTest
  * @Author huzhuoyu
  * @Date 2022/4/2 12:12 上午
  */

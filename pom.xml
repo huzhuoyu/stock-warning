@@ -25,9 +25,9 @@
 
     <!-- 子模块 -->
     <modules>
-        <module>stock-warning-autoconfig</module>
-        <module>stock-warning-api</module>
-        <module>stock-warning-impl</module>
+        <module>stock-warning-admin</module>
+        <module>stock-warning-common</module>
+        <module>stock-warning-service</module>
     </modules>
 
     <dependencyManagement>

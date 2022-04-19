@@ -1,5 +1,6 @@
-package com.hzy.props;
+package com.hzy.autoconfig;
 
+import com.hzy.props.EmailConfigProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,9 +9,9 @@ import java.util.Properties;
 
 /**
  * @ClassName StockWarningConfiguration
- * @Description StockWarningConfiguration-bean
+ * @Description 自动装载类
  * @Author huzhuoyu
- * @Date 2022/4/2 9:03 上午
+ * @Date 2022/4/20 12:11 上午
  */
 @Configuration
 public class StockWarningConfiguration {
