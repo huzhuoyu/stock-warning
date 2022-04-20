@@ -17,6 +17,15 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>stock-warning</groupId>
+            <artifactId>stock-warning-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>stock-warning</groupId>
+            <artifactId>stock-warning-service</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -49,16 +58,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-test</artifactId>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>stock-warning</groupId>
-            <artifactId>stock-warning-common</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>stock-warning</groupId>
-            <artifactId>stock-warning-service</artifactId>
         </dependency>
 
         <!-- SpringBoot集成thymeleaf模板 -->
@@ -94,5 +93,35 @@
         </dependency>
 
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.1.1.RELEASE</version>
+                <configuration>
+                    <fork>true</fork> <!-- 如果没有该配置，devtools不会生效 -->
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <warName>${project.artifactId}</warName>
+                </configuration>
+            </plugin>
+        </plugins>
+        <finalName>${project.artifactId}</finalName>
+    </build>
 
 </project>
