@@ -1,6 +1,7 @@
 package com.hzy.entity;
 
 import lombok.Data;
+import lombok.ToString;
 
 /**
  * @ClassName StockDetailsInfo
@@ -9,6 +10,7 @@ import lombok.Data;
  * @Date 2022/5/5 4:51 下午
  */
 @Data
+@ToString
 public class StockDetailsInfo {
     //所属市场：1中国大陆 100香港 200美股
     private String national;
