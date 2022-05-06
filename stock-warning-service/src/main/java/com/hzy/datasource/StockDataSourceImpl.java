@@ -3,6 +3,7 @@ package com.hzy.datasource;
 import com.alibaba.fastjson.JSONArray;
 import com.hzy.IStockDataSource;
 import com.hzy.contants.StockContants;
+import com.hzy.utils.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
@@ -15,7 +16,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @Author huzhuoyu
  * @Date 2022/4/21 11:20 上午
  */
-public class TxStockNow implements IStockDataSource {
+public class StockDataSourceImpl implements IStockDataSource {
 
     /**
      * 获取所有股票信息
@@ -31,6 +32,14 @@ public class TxStockNow implements IStockDataSource {
         RestTemplate restTemplate = new RestTemplate();
         resultJson = getWebDataSource(num, resultJson, restTemplate);
         return resultJson;
+    }
+
+    @Override
+    public String getStockDetails(String code) throws URISyntaxException {
+        String result = null;
+        RestTemplate restTemplate = new RestTemplate();
+        result = getStockDetails(code, result, restTemplate);
+        return result;
     }
 
     /**
@@ -74,5 +83,19 @@ public class TxStockNow implements IStockDataSource {
             }
         }
         return resultJson;
+    }
+
+    private String getStockDetails(String code, String result, RestTemplate restTemplate) throws URISyntaxException {
+        String sh_url = StockContants.DETAILS_BASE_URL + StockContants.SHANG_HAI + code;
+        String sz_url = StockContants.DETAILS_BASE_URL + StockContants.SHEN_ZHEN + code;
+        //发送请求
+        URI sh_uri = new URI(sh_url);
+        URI sz_uri = new URI(sz_url);
+        result = restTemplate.getForObject(sh_uri, String.class);
+        if (result.contains("v_pv_none_match")) {
+            result = restTemplate.getForObject(sz_uri, String.class);
+        }
+        System.out.println(result);
+        return result;
     }
 }

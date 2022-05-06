@@ -12,7 +12,7 @@ import lombok.Data;
 public class StockContants {
     public static final String SHEN_ZHEN = "sz";
     public static final String SHANG_HAI = "sh";
-    public static final String BASE_URL = "http://qt.gtimg.cn/q=";
+    public static final String DETAILS_BASE_URL = "http://qt.gtimg.cn/q=";
     public static final String SINA_BASE_URL = "http://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodeData?";
 
 }

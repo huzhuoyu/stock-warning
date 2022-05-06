@@ -11,5 +11,17 @@ import java.net.URISyntaxException;
  * @Date 2022/4/21 11:29 上午
  */
 public interface IStockDataSource {
+    /**
+     * 获取所有股票信息
+     * @return
+     * @throws URISyntaxException
+     */
     JSONArray getAllStock() throws URISyntaxException;
+
+    /**
+     * 获取指定股票的信息
+     * @return
+     * @throws URISyntaxException
+     */
+    String getStockDetails(String code) throws URISyntaxException;
 }

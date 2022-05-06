@@ -9,7 +9,7 @@ import lombok.Data;
  * @Date 2022/4/21 3:17 下午
  */
 @Data
-public class Stock {
+public class AllStockInfo {
     //所属市场
     private String national;
     //股票名称
@@ -25,7 +25,7 @@ public class Stock {
     //成交量（手）
     private String dealNumber;
     //外盘:主动买入成交的数量
-    private String B;
+    private String activeBuy;
     //内盘:主动卖出成交的数量
-    private String S;
+    private String activeSell;
 }
