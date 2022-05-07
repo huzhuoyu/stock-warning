@@ -5,7 +5,6 @@ import com.hzy.exception.StockException;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
@@ -21,9 +20,6 @@ public class ReflectUtils {
      *
      * @param dataString
      * @param target
-     * @throws NoSuchMethodException
-     * @throws InvocationTargetException
-     * @throws IllegalAccessException
      */
     public static void stringCopyValueToEntity(String dataString, Object target) {
         //去除首尾引号
@@ -48,13 +44,13 @@ public class ReflectUtils {
                 setMethod = clazz.getMethod(setName, String.class);
                 setMethod.invoke(target, split[i]);
             } catch (Exception e) {
-                if (log.isErrorEnabled()){
+                if (log.isErrorEnabled()) {
                     log.error("反射取值失败");
                 }
                 throw new StockException(StockContants.FAILED, "反射取值失败", e);
             }
         }
-        if (log.isDebugEnabled()){
+        if (log.isDebugEnabled()) {
             log.debug(target.toString());
         }
     }

@@ -220,6 +220,7 @@
         <module>stock-warning-admin</module>
         <module>stock-warning-common</module>
         <module>stock-warning-service</module>
+        <module>stock-warning-starter</module>
     </modules>
     <packaging>pom</packaging>
 

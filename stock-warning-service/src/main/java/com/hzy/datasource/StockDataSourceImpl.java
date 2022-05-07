@@ -6,13 +6,11 @@ import com.hzy.contants.StockContants;
 import com.hzy.entity.AllStockInfo;
 import com.hzy.entity.StockDetailsInfo;
 import com.hzy.exception.StockException;
-import com.hzy.utils.ReflectUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -45,12 +43,18 @@ public class StockDataSourceImpl implements IStockDataSource {
         return resultJson;
     }
 
+    /**
+     * 查询个股详细信息，上层需要转换为对象。
+     *
+     * @param code
+     * @return
+     */
     @Override
     public String getStockDetails(String code) {
         String result = null;
         RestTemplate restTemplate = new RestTemplate();
         result = getStockDetails(code, result, restTemplate);
-        ReflectUtils.stringCopyValueToEntity(result, stockDetailsInfo);
+//        ReflectUtils.stringCopyValueToEntity(result, stockDetailsInfo);
         return result;
     }
 
@@ -61,7 +65,6 @@ public class StockDataSourceImpl implements IStockDataSource {
      * @param resultJson
      * @param restTemplate
      * @return
-     * @throws URISyntaxException
      */
     private JSONArray getWebDataSource(AtomicInteger num, JSONArray resultJson, RestTemplate restTemplate) {
         String stockType = "sz_a";
@@ -83,14 +86,14 @@ public class StockDataSourceImpl implements IStockDataSource {
             try {
                 uri = new URI(url);
             } catch (Exception e) {
-                if (log.isErrorEnabled()){
+                if (log.isErrorEnabled()) {
                     log.error("URL错误");
                 }
                 throw new StockException(StockContants.FAILED, "URL错误", e);
             }
             resultJson = JSONArray.parseArray(restTemplate.getForObject(uri, String.class));
             for (int i1 = 0; i1 < resultJson.size(); i1++) {
-                if (log.isInfoEnabled()){
+                if (log.isInfoEnabled()) {
                     log.info("市场:[{}],第[{}]只股票为:{}", stockType, num.getAndIncrement(), resultJson.getString(i1));
                 }
             }
@@ -101,7 +104,7 @@ public class StockDataSourceImpl implements IStockDataSource {
                 flag = false;
                 stockType = "sh_a";
                 i = 1;
-                if (log.isInfoEnabled()){
+                if (log.isInfoEnabled()) {
                     log.info("====================开始打印上海A股股票====================");
                 }
                 continue;
@@ -110,6 +113,14 @@ public class StockDataSourceImpl implements IStockDataSource {
         return resultJson;
     }
 
+    /**
+     * 从腾讯证券获取个股详细信息
+     *
+     * @param code
+     * @param result
+     * @param restTemplate
+     * @return
+     */
     private String getStockDetails(String code, String result, RestTemplate restTemplate) {
         String sh_url = StockContants.DETAILS_BASE_URL + StockContants.SHANG_HAI + code;
         String sz_url = StockContants.DETAILS_BASE_URL + StockContants.SHEN_ZHEN + code;
@@ -121,7 +132,7 @@ public class StockDataSourceImpl implements IStockDataSource {
             sh_uri = new URI(sh_url);
             sz_uri = new URI(sz_url);
         } catch (Exception e) {
-            if (log.isErrorEnabled()){
+            if (log.isErrorEnabled()) {
                 log.error("URL错误");
             }
             throw new StockException(StockContants.FAILED, "URL错误", e);
