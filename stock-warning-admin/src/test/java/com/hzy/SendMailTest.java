@@ -1,8 +1,11 @@
 package com.hzy;
 
-import com.hzy.props.EmailConfigProperties;
+import com.hzy.contants.StockContants;
 import com.hzy.email.MailSenderInfo;
 import com.hzy.email.SendEmail;
+import com.hzy.exception.StockException;
+import com.hzy.props.EmailConfigProperties;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = StockWarningApplication.class)
+@Slf4j
 public class SendMailTest {
     @Autowired
     private SendEmail sendEmail;
@@ -33,13 +37,12 @@ public class SendMailTest {
             mailSenderInfo.setTest("测试邮件11111");
             isSuccess = sendEmail.sendMail(mailSenderInfo);
         } catch (Exception e) {
-            e.printStackTrace();
-            isSuccess = false;
+            throw new StockException(StockContants.FAILED, "发送失败", e);
         }
         if (isSuccess) {
-            System.out.println("===发送成功====");
+            log.info("===发送成功====");
         } else {
-            System.out.println("===发送失败====");
+            log.info("===发送失败====");
         }
     }
 }

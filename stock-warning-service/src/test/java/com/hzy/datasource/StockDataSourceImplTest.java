@@ -1,6 +1,7 @@
 package com.hzy.datasource;
 
 import com.hzy.entity.StockDetailsInfo;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -18,6 +19,7 @@ import java.net.URISyntaxException;
  * @Date 2022/5/5 10:42 上午
  */
 @RunWith(MockitoJUnitRunner.class)
+@Slf4j
 public class StockDataSourceImplTest {
 
     @InjectMocks
@@ -29,7 +31,7 @@ public class StockDataSourceImplTest {
     }
 
     @Test
-    public void getStockDetails() throws URISyntaxException {
+    public void getStockDetails() {
         stockDataSource.getStockDetails("600397");
         stockDataSource.getStockDetails("601658");
         stockDataSource.getStockDetails("002387");
@@ -43,11 +45,11 @@ public class StockDataSourceImplTest {
         int start = s.indexOf("\"");
         int end = s.lastIndexOf("\"");
         String sub = s.substring(start + 1, end);
-        sub = sub.replaceAll("~~","~null~");
-        sub = sub.replaceAll("~~","~null~");
-        sub = sub.replaceAll(" +","null");
+        sub = sub.replaceAll("~~", "~null~");
+        sub = sub.replaceAll("~~", "~null~");
+        sub = sub.replaceAll(" +", "null");
         String[] split = sub.split("~");
-        System.out.println(sub);
+        log.info(sub);
         StockDetailsInfo stockDetailsInfo = new StockDetailsInfo();
         Class<?> clazz = stockDetailsInfo.getClass();
         Field field[] = clazz.getDeclaredFields();
@@ -58,6 +60,6 @@ public class StockDataSourceImplTest {
             Method setMethod = clazz.getMethod(setName, String.class);
             setMethod.invoke(stockDetailsInfo, split[i]);
         }
-        System.out.println(stockDetailsInfo);
+        log.info(stockDetailsInfo.toString());
     }
 }

@@ -1,6 +1,9 @@
 package com.hzy.email;
 
+import com.hzy.contants.StockContants;
+import com.hzy.exception.StockException;
 import com.hzy.props.EmailConfigProperties;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +24,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @Date 2022/4/1 5:15 下午
  */
 @Component
+@Slf4j
 public class SendEmail {
     @Autowired
     EmailConfigProperties emailConfigProperties;
@@ -72,9 +76,11 @@ public class SendEmail {
             return isSendSuccess.get();
         } catch (Exception e) {
             isSendSuccess.set(false);
-            e.printStackTrace();
+            if (log.isErrorEnabled()) {
+                log.error("发送邮件失败……");
+            }
+            throw new StockException(StockContants.FAILED, "发送邮件失败……", e);
         }
-        return isSendSuccess.get();
     }
 
     private String getMailList(String[] mailArray) {
