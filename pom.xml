@@ -39,6 +39,20 @@
         <mybatisplus.version>3.2.0</mybatisplus.version>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+    </dependencies>
+
     <!--依赖声明-->
     <dependencyManagement>
         <dependencies>
@@ -55,20 +69,6 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatisplus.version}</version>
-            </dependency>
-
-            <!--slf4j-->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-                <version>${slf4j.version}</version>
-            </dependency>
-
-            <!--lombok版本-->
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
             </dependency>
 
             <!--email版本-->
@@ -241,10 +241,6 @@
         <module>stock-warning-dao</module>
     </modules>
     <packaging>pom</packaging>
-
-    <dependencies>
-
-    </dependencies>
 
     <build>
         <plugins>
