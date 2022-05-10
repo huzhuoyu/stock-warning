@@ -2,10 +2,12 @@ package com.hzy.datasource;
 
 import com.alibaba.fastjson.JSONArray;
 import com.hzy.IStockDataSource;
+import com.hzy.StockDetailsMapper;
 import com.hzy.contants.StockContants;
 import com.hzy.entity.AllStockInfo;
 import com.hzy.entity.StockDetailsInfo;
 import com.hzy.exception.StockException;
+import com.hzy.utils.ReflectUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestTemplate;
@@ -21,11 +23,15 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 @Slf4j
 public class StockDataSourceImpl implements IStockDataSource {
+
     @Autowired
     StockDetailsInfo stockDetailsInfo;
 
     @Autowired
     AllStockInfo allStockInfo;
+
+    @Autowired
+    StockDetailsMapper stockDetailsMapper;
 
     /**
      * 获取所有股票信息
@@ -54,7 +60,8 @@ public class StockDataSourceImpl implements IStockDataSource {
         String result = null;
         RestTemplate restTemplate = new RestTemplate();
         result = getStockDetails(code, result, restTemplate);
-//        ReflectUtils.stringCopyValueToEntity(result, stockDetailsInfo);
+        ReflectUtils.stringCopyValueToEntity(result, stockDetailsInfo);
+        stockDetailsMapper.insert(stockDetailsInfo);
         return result;
     }
 

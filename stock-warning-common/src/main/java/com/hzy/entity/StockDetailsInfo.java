@@ -1,5 +1,6 @@
 package com.hzy.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.ToString;
 
@@ -11,7 +12,8 @@ import lombok.ToString;
  */
 @Data
 @ToString
-public class StockDetailsInfo {
+@TableName("stock_details")
+public class StockDetailsInfo extends BaseInfo {
     //所属市场：1中国大陆 100香港 200美股
     private String national;
     //股票名称
