@@ -57,6 +57,7 @@
                 <version>${mybatisplus.version}</version>
             </dependency>
 
+            <!--slf4j-->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-log4j12</artifactId>
@@ -86,7 +87,7 @@
                 <scope>import</scope>
             </dependency>
 
-            <!-- 阿里数据库连接池 -->
+            <!-- druid数据库连接池 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
