@@ -228,6 +228,11 @@
                 <artifactId>stock-warning-service</artifactId>
                 <version>${revision}</version>
             </dependency>
+            <dependency>
+                <groupId>stock-warning</groupId>
+                <artifactId>stock-warning-dao</artifactId>
+                <version>${revision}</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
