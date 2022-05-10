@@ -26,10 +26,6 @@
             <artifactId>stock-warning-common</artifactId>
         </dependency>
         <dependency>
-            <groupId>stock-warning</groupId>
-            <artifactId>stock-warning-dao</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.80</version>
