@@ -31,7 +31,7 @@ public class StockDataSourceImplTest {
 
     @Test
     public void getStockDetails() {
-        stockDataSource.getStockDetails("600397");
+        System.out.println(stockDataSource.getStockDetails("600397"));
         stockDataSource.getStockDetails("601658");
         stockDataSource.getStockDetails("002387");
         stockDataSource.getStockDetails("002384");
