@@ -28,6 +28,9 @@ public class StockDataSourceImpl implements IStockDataSource {
     @Autowired
     StockDetailsMapper stockDetailsMapper;
 
+    @Autowired
+    RestTemplate restTemplate;
+
     /**
      * 获取所有股票信息
      * （单次查询最多返回100只股票）
@@ -39,7 +42,6 @@ public class StockDataSourceImpl implements IStockDataSource {
     public JSONArray getAllStock() {
         AtomicInteger num = new AtomicInteger(1);
         JSONArray resultJson = null;
-        RestTemplate restTemplate = new RestTemplate();
         resultJson = getWebDataSource(num, resultJson, restTemplate);
         return resultJson;
     }
@@ -53,7 +55,6 @@ public class StockDataSourceImpl implements IStockDataSource {
     @Override
     public String getStockDetails(String code) {
         String result = null;
-        RestTemplate restTemplate = new RestTemplate();
         result = getStockDetails(code, result, restTemplate);
         StockDetailsInfo stockDetailsInfo = new StockDetailsInfo();
         ReflectUtils.stringCopyValueToEntity(result, stockDetailsInfo);

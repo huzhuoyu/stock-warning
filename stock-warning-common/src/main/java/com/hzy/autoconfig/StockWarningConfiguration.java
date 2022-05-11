@@ -4,6 +4,7 @@ import com.hzy.props.EmailConfigProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Properties;
 
@@ -28,5 +29,10 @@ public class StockWarningConfiguration {
         props.setProperty("mail.user", emailConfigProperties.getEmail().getUser());
         props.setProperty("mail.password", emailConfigProperties.getEmail().getPassword());
         return props;
+    }
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 }

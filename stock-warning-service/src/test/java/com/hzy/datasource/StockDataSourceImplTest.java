@@ -1,12 +1,14 @@
 package com.hzy.datasource;
 
+import com.hzy.DemoApplication;
 import com.hzy.entity.StockDetailsInfo;
 import com.hzy.exception.StockException;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -17,11 +19,12 @@ import java.lang.reflect.Method;
  * @Author huzhuoyu
  * @Date 2022/5/5 10:42 上午
  */
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = {DemoApplication.class})
 @Slf4j
 public class StockDataSourceImplTest {
 
-    @InjectMocks
+    @Autowired
     StockDataSourceImpl stockDataSource;
 
     @Test

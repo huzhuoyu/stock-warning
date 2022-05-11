@@ -54,7 +54,7 @@ public class StockDetailsInfo extends BaseInfo {
     private String sell5;
     private String sell5Number;
     //最近逐笔成交
-    private String RecentTransaction;
+    private String recentTransaction;
     //时间戳
     private String time;
     //涨跌
@@ -74,7 +74,7 @@ public class StockDetailsInfo extends BaseInfo {
     //换手率
     private String turnoverRate;
     //市盈率
-    private String PERatio;
+    private String peRatio;
     //unknown
     private String unknown;
     //最高
@@ -100,17 +100,17 @@ public class StockDetailsInfo extends BaseInfo {
     //均价
     private String averagePrice;
     //动态市盈率
-    private String dynamicPERatio;
+    private String dynamicPeRatio;
     //静态市盈率
-    private String staticPERatio;
+    private String staticPeRatio;
     //unknown
     private String unknown1;
     //unknown
     private String unknown2;
     //贝塔值
-    private String Beta;
+    private String beta;
     //成交额（万），带小数点
-    private String TurnoverWpoint;
+    private String turnoverWPoint;
     //todo：待确认
     private String todo;
     //todo：待确认
@@ -118,7 +118,7 @@ public class StockDetailsInfo extends BaseInfo {
     //unknown
     private String unknown3;
     //类型：A股股票
-    private String GPtype;
+    private String gpType;
     //unknown
     private String unknown4;
     //5日涨幅
@@ -132,7 +132,7 @@ public class StockDetailsInfo extends BaseInfo {
     //小单净额占比
     private String smallOrderNetAmountRatio;
     //52周低
-    private String FiftyTwoLow;
+    private String fiftyTwoLow;
     //10日涨幅
     private String tenDaysIncrease;
     //unknown
