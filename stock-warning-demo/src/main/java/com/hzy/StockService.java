@@ -1,10 +1,8 @@
 package com.hzy;
 
-import com.alibaba.fastjson.JSON;
 import com.hzy.datasource.StockDataSourceImpl;
-import com.hzy.entity.StockDetailsInfo;
-import com.hzy.utils.ReflectUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -17,16 +15,14 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/stock")
 public class StockService {
+    @Autowired
+    StockDataSourceImpl stockDataSource;
 
     @PostMapping("getStockDetails")
     @ResponseBody
-    public JSON getStockDetails(@RequestParam("code") String code) {
-        StockDataSourceImpl stockDataSource = new StockDataSourceImpl();
-        StockDetailsInfo stockDetailsInfo = new StockDetailsInfo();
+    public String getStockDetails(@RequestParam("code") String code) {
         String response = stockDataSource.getStockDetails(code);
-        ReflectUtils.stringCopyValueToEntity(response, stockDetailsInfo);
-        JSON jsonResponse = (JSON) JSON.toJSON(stockDetailsInfo);
-        return jsonResponse;
+        return response;
     }
 
 }
